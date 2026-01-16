@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Medicine Redistribution Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+<div class="dashboard">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>🏥 Medicine Redistribution Portal</h1>
+    <p class="subtitle">
+      Real‑time Cold‑Chain Monitoring & Smart Redistribution
+    </p>
+  </div>
+
+  <!-- ANALYTICS CARDS -->
+  <div class="analytics">
+    <div class="card">
+      <span class="label">Live Temperature</span>
+      <h2 id="liveTemp">-- °C</h2>
+    </div>
+
+    <div class="card">
+      <span class="label">Cold Chain Status</span>
+      <h2 id="tempStatus">--</h2>
+    </div>
+
+    <div class="card">
+      <span class="label">Medicines Reserved Today</span>
+      <h2 id="stats">0</h2>
+    </div>
+  </div>
+<p id="stats"></p>
+  <!-- SEARCH -->
+  <input
+    type="text"
+    id="searchInput"
+    placeholder="🔍 Search medicine or pharmacy..."
+    onkeyup="searchMedicines()"
+  />
+
+  <!-- TABLE -->
+  <table id="medicineTable">
+    <tr>
+      <th>Medicine</th>
+      <th>Expiry</th>
+      <th>Temp Status</th>
+      <th>Risk Score</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </table>
+
+  <br>
+
+  <!-- ADMIN -->
+  <a href="admin-login.html">Admin Portal</a>
+
+
+</div>
+
+<!-- SCRIPT (ONLY ONCE) -->
+<script src="script.js"></script>
+
+</body>
+</html>

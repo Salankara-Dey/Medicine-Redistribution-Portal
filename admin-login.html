@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="auth-body">
+
+<div class="auth-container">
+
+  <div class="auth-card">
+    <h1>🔐 Admin Access</h1>
+    <p class="auth-subtitle">
+      Secure login for system administrators
+    </p>
+
+    <input type="text" id="adminUser" placeholder="Username">
+    <input type="password" id="adminPass" placeholder="Password">
+
+    <button class="primary-btn" onclick="adminLogin()">Login</button>
+
+    <p id="loginError" class="error-text"></p>
+  </div>
+
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>

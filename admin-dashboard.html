@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+  <div class="header">
+    <h1>🛠 Admin Dashboard</h1>
+    <p class="subtitle">System Management & Oversight</p>
+  </div>
+
+  <!-- REGISTER ORGANIZATION -->
+  <div class="card">
+    <h3>Register Pharmacy / Hospital</h3>
+
+    <input type="text" id="orgName" placeholder="Organization Name">
+    <br><br>
+
+    <input type="text" id="orgLocation" placeholder="Location">
+    <br><br>
+
+    <select id="orgType">
+      <option>Pharmacy</option>
+      <option>Hospital</option>
+    </select>
+    <br><br>
+
+    <button onclick="registerOrg()">Register</button>
+  </div>
+
+  <br>
+
+  <!-- REGISTERED LIST -->
+  <div class="card">
+    <h3>Registered Organizations</h3>
+    <ul id="orgList"></ul>
+  </div>
+
+  <br>
+  <a href="index.html">← Back to Main Dashboard</a>
+
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>

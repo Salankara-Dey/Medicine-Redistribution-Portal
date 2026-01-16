@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Request Medicine</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+  <div class="header">
+    <h1>📦 Medicine Redistribution Request</h1>
+    <p class="subtitle">
+      Submit a formal request for near‑expiry medicine redistribution
+    </p>
+  </div>
+
+  <div class="card form-card">
+
+    <label>Medicine Name</label>
+    <input type="text" id="medicineName" placeholder="Auto‑filled from dashboard">
+
+    <label>Quantity Required</label>
+    <input type="number" id="quantity" placeholder="Enter quantity">
+
+    <label>Requesting Organization</label>
+    <input type="text" id="requester" placeholder="Hospital / Pharmacy name">
+
+    <button class="primary-btn" onclick="submitRequest()">
+      Submit Redistribution Request
+    </button>
+
+  </div>
+
+  <br>
+  <a href="index.html">← Back to Dashboard</a>
+
+</div>
+
+<script src="request.js"></script>
+</body>
+</html>
