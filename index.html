@@ -3,23 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <title>Medicine Redistribution Portal</title>
+
+  <!-- Inter Font (Lovable-style) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <link rel="stylesheet" href="style.css">
 </head>
 
-
 <body>
 
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar">
+  <div class="brand">
+    <img src="logo.jpeg" alt="Logo" class="logo-img" />
+    <div>
+      <h1>MediSetu</h1>
+      <span>Cold-Chain Medicine Redistribution Portal</span>
+    </div>
+  </div>
+
+  <div class="nav-right">
+  <i class="fa-regular fa-bell" onclick="openNotifications()"></i>
+  <i class="fa-solid fa-gear" onclick="openSettings()"></i>
+  <div class="avatar" onclick="openProfile()">A</div>
+</div>
+
+</nav>
+
+<!-- ================= ALERT ================= -->
+<div class="alert">
+  <i class="fa-solid fa-triangle-exclamation"></i>
+  <div>
+    <strong>Cold-Chain Breach Detected</strong>
+    <p>
+      Storage Unit #3 has exceeded safe temperature range.
+      2 medicines at risk require immediate attention.
+    </p>
+    <a href="#">View affected items →</a>
+  </div>
+</div>
+
+<!-- ================= DASHBOARD ================= -->
 <div class="dashboard">
 
   <!-- HEADER -->
   <div class="header">
-    <h1>🏥 Medicine Redistribution Portal</h1>
+    <h1>🏥Medicine Redistribution Portal</h1>
     <p class="subtitle">
-      Real‑time Cold‑Chain Monitoring & Smart Redistribution
+      Real-time Cold-Chain Monitoring & Smart Redistribution
     </p>
   </div>
 
-  <!-- ANALYTICS CARDS -->
+  <!-- ================= METRICS / ANALYTICS ================= -->
   <div class="analytics">
     <div class="card">
       <span class="label">Live Temperature</span>
@@ -36,8 +76,8 @@
       <h2 id="stats">0</h2>
     </div>
   </div>
-<p id="stats"></p>
-  <!-- SEARCH -->
+
+  <!-- ================= SEARCH ================= -->
   <input
     type="text"
     id="searchInput"
@@ -45,7 +85,7 @@
     onkeyup="searchMedicines()"
   />
 
-  <!-- TABLE -->
+  <!-- ================= TABLE ================= -->
   <table id="medicineTable">
     <tr>
       <th>Medicine</th>
@@ -55,18 +95,90 @@
       <th>Status</th>
       <th>Action</th>
     </tr>
+    <!-- Rows are injected by script.js -->
   </table>
 
   <br>
 
-  <!-- ADMIN -->
+  <!-- ================= ADMIN ================= -->
   <a href="admin-login.html">Admin Portal</a>
-
 
 </div>
 
-<!-- SCRIPT (ONLY ONCE) -->
+<!-- ================= SCRIPT ================= -->
 <script src="script.js"></script>
+<!-- ================= REQUEST MODAL ================= -->
+<div class="modal" id="modal">
+  <div class="modal-box">
+
+    <!-- HEADER -->
+    <div class="modal-header">
+      <h3>Request Redistribution</h3>
+      <span class="close-btn" onclick="closeModal()">✕</span>
+    </div>
+
+    <p class="muted">
+      Initiate transfer to a healthcare facility that needs this medicine.
+    </p>
+
+    <!-- MEDICINE CARD -->
+    <div class="modal-card">
+      <div class="modal-card-header">
+        <strong id="modalMedicineName">Medicine Name</strong>
+        <span class="pill critical" id="modalRiskLabel">Critical</span>
+      </div>
+
+      <p class="muted">
+        ⏱ Expires in <span id="modalExpiry">--</span> days
+      </p>
+
+      <div class="priority-box">
+        ⚠ <strong>High Priority</strong>
+        <p>
+          This medicine has a risk score of
+          <strong id="modalRiskScore">--</strong>/10 and requires immediate attention.
+        </p>
+      </div>
+    </div>
+
+    <!-- DESTINATION -->
+    <div class="modal-section">
+      <label>Suggested Destination</label>
+      <div class="destination-card">
+        🏥 <strong id="modalDestination">City General Hospital</strong>
+        <span class="muted">12.3 km away • High demand</span>
+      </div>
+    </div>
+
+    <!-- NOTES -->
+    <div class="modal-section">
+      <label>Additional Notes (Optional)</label>
+      <textarea placeholder="Add any special handling instructions or notes..."></textarea>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="modal-actions">
+      <button class="outline" onclick="closeModal()">Cancel</button>
+      <button onclick="confirmRequest()">Confirm Request</button>
+    </div>
+
+  </div>
+</div>
+<div class="dropdown" id="notificationBox">
+  <strong>Alerts</strong>
+  <p>No new notifications</p>
+</div>
+
+<div class="dropdown" id="settingsBox">
+  <strong>Settings</strong>
+  <p>Theme • Alerts • Account</p>
+</div>
+
+<div class="dropdown" id="profileBox">
+  <strong>Admin</strong>
+  <p>View Profile</p>
+  <p>Logout</p>
+</div>
 
 </body>
 </html>
