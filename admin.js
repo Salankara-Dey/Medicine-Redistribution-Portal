@@ -32,7 +32,11 @@ if (window.location.pathname.includes("admin-dashboard")) {
 /***********************
  * ADMIN DASHBOARD LOGIC
  ***********************/
-let organizations = [];
+let organizations =
+  JSON.parse(localStorage.getItem("organizations")) || [];
+// STEP 4B: Load buyer/hospital requests
+let medicineRequests =
+  JSON.parse(localStorage.getItem("medicineRequests")) || [];
 
 function registerOrg() {
   const name = document.getElementById("orgName").value;
@@ -44,7 +48,14 @@ function registerOrg() {
     return;
   }
 
-  organizations.push({ name, location, type });
+  organizations.push({
+  name,
+  location: location.toLowerCase(),
+  type
+});
+
+localStorage.setItem("organizations", JSON.stringify(organizations));
+
   updateOrgList();
 
   document.getElementById("orgName").value = "";
@@ -60,4 +71,43 @@ function updateOrgList() {
     li.innerText = `${org.name} (${org.type}) – ${org.location}`;
     list.appendChild(li);
   });
+}
+// STEP 4B: Location-based matching logic
+function getMatchingRequests() {
+  let matches = [];
+
+  medicineRequests.forEach(req => {
+    organizations.forEach(org => {
+      if (
+        org.type === "Pharmacy" &&
+        org.location === req.location
+      ) {
+        matches.push({
+          medicine: req.medicine,
+          quantity: req.quantity,
+          requester: req.requester,
+          fromLocation: org.location
+        });
+      }
+    });
+  });
+
+  return matches;
+}
+function showLocationMatches() {
+  const matches = getLocationSafeMatches();
+
+  if (matches.length === 0) {
+    alert("No location-safe redistribution possible");
+    return;
+  }
+
+  console.log("✅ Location-Restricted Matches:");
+  matches.forEach(m => {
+    console.log(
+      `Medicine: ${m.medicine} | Qty: ${m.quantity} | From: ${m.matchedStore} | To: ${m.requester} | Location: ${m.location}`
+    );
+  });
+
+  alert("Location-safe matches generated. Check console.");
 }

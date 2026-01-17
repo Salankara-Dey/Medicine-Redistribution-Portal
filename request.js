@@ -14,21 +14,39 @@ window.onload = function () {
 };
 
 function submitRequest() {
-  let medicine = document.getElementById("medicineName").value;
-  let qty = document.getElementById("quantity").value;
-  let requester = document.getElementById("requester").value;
+  const medicine = document.getElementById("medicineName").value;
+  const quantity = document.getElementById("quantity").value;
+  const requester = document.getElementById("requester").value;
+  const location = document.getElementById("location").value.toLowerCase();
+  const urgency = document.getElementById("urgency").value;
 
-  if (!medicine || !qty || !requester) {
+  if (!medicine || !quantity || !requester || !location) {
     alert("Please fill all fields");
     return;
   }
 
-  alert(
-    `Request submitted!\n\nMedicine: ${medicine}\nQuantity: ${qty}\nRequester: ${requester}`
-  );
+  const newRequest = {
+    id: Date.now(),
+    medicine,
+    quantity: Number(quantity),
+    requester,
+    location,
+    urgency,
+    status: "Pending"
+  };
 
-  // Demo-only: no backend
+  // SAVE REQUEST (shared with admin)
+  let requests =
+    JSON.parse(localStorage.getItem("medicineRequests")) || [];
+
+  requests.push(newRequest);
+  localStorage.setItem("medicineRequests", JSON.stringify(requests));
+
+  alert("Request submitted successfully and sent for admin approval");
+
+  // Reset form
   document.getElementById("medicineName").value = "";
   document.getElementById("quantity").value = "";
   document.getElementById("requester").value = "";
+  document.getElementById("location").value = "";
 }
