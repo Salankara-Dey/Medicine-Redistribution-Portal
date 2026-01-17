@@ -50,9 +50,13 @@ function loadTable() {
     let btn = document.createElement("button");
 
     if (med.status === "Available") {
-      btn.innerText = "Request";
-      btn.onclick = () => openModal(med);
-    } else {
+  btn.innerText = "Request";
+  btn.onclick = () => {
+    window.location.href =
+      `request.html?medicine=${encodeURIComponent(med.name)}`;
+  };
+}
+ else {
       btn.innerText = "Reserved";
       btn.disabled = true;
     }
